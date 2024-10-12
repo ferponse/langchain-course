@@ -22,9 +22,6 @@ if __name__ == "__main__":
 
     load_dotenv()
 
-    openai_api_key: str | None = os.getenv("OPENAI_API_KEY")
-    print(openai_api_key)
-
     summary_template: str = """
         Dada la información {information} sobre una persona, quiero que crees:
         1. Un resumen breve
