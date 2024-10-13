@@ -1,3 +1,4 @@
+from typing import Tuple
 from dotenv import load_dotenv
 from langchain.chains import LLMChain
 from langchain_core.prompts import PromptTemplate
@@ -8,7 +9,7 @@ from output_parsers import summary_parser, Summary
 from third_parties.linkedin import scrape_linkedin_profile
 
 
-def ice_break_with(name: str) -> str:
+def ice_break_with(name: str) -> Tuple[Summary, str]:
     linkedin_url = linkedin_lookup_agent(name=name)
     linkedin_data = scrape_linkedin_profile(linkedin_profile_url=linkedin_url, mock=True)
 
@@ -28,7 +29,7 @@ def ice_break_with(name: str) -> str:
 
     result: Summary = chain.invoke(input={"information": linkedin_data})
 
-    print(result.content)
+    return result, linkedin_data.get("profile_pic_url")
 
 if __name__ == "__main__":
     load_dotenv()
