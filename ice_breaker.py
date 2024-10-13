@@ -21,7 +21,7 @@ if __name__ == "__main__":
 
     summary_prompt_template: PromptTemplate = PromptTemplate(template=summary_template, input_variables=["information"])
 
-    llm: ChatOpenAI = ChatOpenAI(temperature=0, model="gpt-4o-mini")
+    llm: ChatOpenAI = ChatOpenAI(temperature=0, model_name="gpt-4o-mini")
 
     chain: LLMChain = summary_prompt_template | llm
 
